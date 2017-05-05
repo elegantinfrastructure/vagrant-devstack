@@ -6,6 +6,17 @@
 # https://github.com/nand2/vagrant-devstack/blob/master/devstack-bootstrap.sh
 #
 
+# Configuration via environment variables
+
+# Choose branch to check out, default master
+export git_branch=master
+if [ -n "$OS_RELEASE" ]; then
+    git_branch=stable/$OS_RELEASE
+fi
+
+# Configure git base, e.g GIT_BASE=git://192.168.1.36 for local mirror
+export GIT_BASE=${GIT_BASE:-https://github.com}
+
 # Warm up apt and pip cache
 sudo rsync -a /vagrant/apt_cache/ /var/cache/apt
 sudo mkdir -p /root/.cache
@@ -24,7 +35,7 @@ sudo apt-get update
 sudo apt-get install -y git crudini
 
 # Checkout devstack
-[ -d devstack ] || git clone -b stable/ocata git://192.168.1.36/openstack-dev/devstack
+[ -d devstack ] || git clone -b $git_branch $GIT_BASE/openstack-dev/devstack
 
 # Copy config and run devstack
 cp /vagrant/localrc devstack
@@ -48,4 +59,3 @@ for id in `openstack $OS_ARGS domain list -f value | awk '{ print $1 }'`; do
     openstack $OS_ARGS domain set --disable $id
     openstack $OS_ARGS domain delete $id
 done
-

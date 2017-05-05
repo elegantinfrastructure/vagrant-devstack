@@ -24,7 +24,10 @@ Vagrant.configure("2") do |config|
 
   # Run provisioners
 
-  environment = {}
+  environment = {
+    "OS_RELEASE": ENV["OS_RELEASE"],
+    "GIT_BASE": ENV["GIT_BASE"],
+  }
 
   config.vm.provision "shell", path: "provision.sh", env: environment, privileged: false
   config.vm.provision "shell", path: "setup_basebox.sh"

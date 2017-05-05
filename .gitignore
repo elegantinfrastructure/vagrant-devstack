@@ -1,0 +1,4 @@
+.vagrant/
+apt_cache/*
+pip_cache/*
+ubuntu-xenial-16.04-cloudimg-console.log

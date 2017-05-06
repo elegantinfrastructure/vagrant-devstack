@@ -1,0 +1,7 @@
+# Configuration used when only token auth present
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+export OS_TOKEN=devstack
+export OS_URL=http://127.0.0.1:5000/v3
+export OS_IDENTITY_API_VERSION=3

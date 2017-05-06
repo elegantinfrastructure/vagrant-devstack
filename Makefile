@@ -1,5 +1,6 @@
 export OS_RELEASE ?= ocata
 export GIT_BASE ?= https://github.com
+export VAGRANT_VAGRANTFILE=Vagrantfile.build
 
 default: build package
 

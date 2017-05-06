@@ -5,6 +5,8 @@ RABBIT_PASSWORD=devstack
 SERVICE_PASSWORD=devstack
 SERVICE_TOKEN=token
  
+HOST_IP=127.0.0.1
+
 # SSL not enabled - we apply config changes after devstack runs
 
 # Services
